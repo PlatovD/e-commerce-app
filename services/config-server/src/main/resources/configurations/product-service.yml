@@ -16,7 +16,5 @@ spring:
     baseline-version: 0
     user: ${spring.datasource.username}
     password: ${spring.datasource.password}
-  config:
-    import: optional:configserver:http://localhost:8888
 server:
   port: 8050
