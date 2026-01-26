@@ -1,0 +1,27 @@
+package io.github.platovd.ecommerce.product;
+
+import io.github.platovd.ecommerce.category.Category;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.math.BigDecimal;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Getter
+@Setter
+@Entity
+public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String name;
+    private String description;
+    @Column(nullable = false)
+    private Double availableQuantity;
+    private BigDecimal price;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+}
