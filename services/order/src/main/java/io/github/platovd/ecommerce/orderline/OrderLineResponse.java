@@ -1,9 +1,7 @@
 package io.github.platovd.ecommerce.orderline;
 
-public record OrderLineRequest(
+public record OrderLineResponse(
         Integer id,
-        Integer orderId,
-        Integer productId,
         Double quantity
 ) {
 }
