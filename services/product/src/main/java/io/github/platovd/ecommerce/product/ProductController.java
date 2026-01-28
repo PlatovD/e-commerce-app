@@ -20,7 +20,7 @@ public class ProductController {
 
     @PostMapping("/purchase")
     public ResponseEntity<List<ProductPurchaseResponse>> purchaseProducts(
-            List<ProductPurchaseRequest> request
+            @RequestBody List<ProductPurchaseRequest> request
     ) {
         return ResponseEntity.ok(service.purchaseProducts(request));
     }

@@ -9,12 +9,12 @@ spring:
   kafka:
     consumer:
       bootstrap-servers: localhost:9092
-      key-deserializer: org.apache.kafka.common.serialization.StringSerializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonSerializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: '*'
-        spring.json.type.mapping: OrderConformation:io.github.platovd.ecommerce.kafka.OrderConfirmation,PaymentConformation:io.github.platovd.ecommerce.notification.PaymentNotificationRequest
-      group-id: paymentGroup, orderGroup
+        spring.json.type.mapping: OrderConformation:io.github.platovd.ecommerce.kafka.order.OrderConformation,PaymentConformation:io.github.platovd.ecommerce.kafka.payment.PaymentConformation
+      group-id: notificationGroup
       auto-offset-reset: earliest
   mail:
     host: localhost
@@ -30,6 +30,6 @@ spring:
           enabled: true
         connectiontimeout: 5000
         timeout: 3000
-        writhtimeout: 5000
+        writetimeout: 5000
 server:
   port: 8040
