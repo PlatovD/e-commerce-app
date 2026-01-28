@@ -6,6 +6,8 @@ import io.github.platovd.ecommerce.kafka.OrderConfirmation;
 import io.github.platovd.ecommerce.kafka.OrderProducer;
 import io.github.platovd.ecommerce.orderline.OrderLineRequest;
 import io.github.platovd.ecommerce.orderline.OrderLineService;
+import io.github.platovd.ecommerce.payment.PaymentClient;
+import io.github.platovd.ecommerce.payment.PaymentRequest;
 import io.github.platovd.ecommerce.product.ProductClient;
 import io.github.platovd.ecommerce.product.PurchaseRequest;
 import jakarta.persistence.EntityNotFoundException;
@@ -22,6 +24,7 @@ public class OrderService {
     private final OrderRepository repository;
     private final CustomerClient customerClient;
     private final ProductClient productClient;
+    private final PaymentClient paymentClient;
     private final OrderMapper mapper;
     private final OrderLineService orderLineService;
     private final OrderProducer orderProducer;
@@ -41,6 +44,14 @@ public class OrderService {
                     )
             );
         }
+
+        paymentClient.requestOrderPayment(new PaymentRequest(
+                request.amount(),
+                request.paymentMethod(),
+                order.getId(),
+                order.getReference(),
+                customer
+        ));
 
         orderProducer.sendOrderConformation(
                 new OrderConfirmation(
