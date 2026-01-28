@@ -1,6 +1,5 @@
 package io.github.platovd.ecommerce.orderline;
 
-import io.github.platovd.ecommerce.order.Order;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,7 +9,7 @@ public class OrderLineMapper {
         return OrderLine.builder()
                 .id(orderLineRequest.id())
                 .order(
-                        Order.builder().id(orderLineRequest.id()).build()
+                        orderLineRequest.order()
                 )
                 .quantity(orderLineRequest.quantity())
                 .productId(orderLineRequest.productId())

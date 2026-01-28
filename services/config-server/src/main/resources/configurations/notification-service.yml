@@ -13,8 +13,8 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: '*'
-        spring.json.type.mapping: OrderConformation:io.github.platovd.ecommerce.kafka.order.OrderConformation,PaymentConformation:io.github.platovd.ecommerce.kafka.payment.PaymentConformation
-      group-id: notificationGroup
+        spring.json.type.mapping: OrderConformation:io.github.platovd.ecommerce.kafka.order.OrderConformation,PaymentNotificationRequest:io.github.platovd.ecommerce.kafka.payment.PaymentConformation
+      group-id: orderGroup, paymentGroup
       auto-offset-reset: earliest
   mail:
     host: localhost
